@@ -1,0 +1,32 @@
+<div class="filtro">
+    <label for="genero">Género:</label>
+    <input type="text" id="genero" [(ngModel)]="filtroGenero" />
+  
+    <label for="anio">Año:</label>
+    <input type="number" id="anio" [(ngModel)]="filtroAnio" />
+
+    <button (click)="aplicarFiltro()">Aplicar</button>
+    <button (click)="quitarFiltro()">Quitar Filtro</button>
+    
+  </div>
+  
+  <div class="lista-peliculas">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let pelicula of peliculasFiltradas">
+        <div class="card mb-4">
+          <img [src]="pelicula.imagen" class="card-img-top img-fluid" alt="Imagen de {{ pelicula.titulo }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ pelicula.titulo }}</h5>
+            <p class="card-text">Género: {{ pelicula.genero }}</p>
+            <p class="card-text">Año: {{ pelicula.anio }}</p>
+            <p class="card-text">Sinopsis: {{ pelicula.sinopsis }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mostrar mensaje si no hay resultados -->
+    <div *ngIf="peliculasFiltradas.length === 0">
+      No se encontraron películas con los criterios de filtro seleccionados.
+    </div>
+  </div>
